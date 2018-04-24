@@ -16,6 +16,14 @@ public class HashCodeTest {
             PhoneNumber pn = (PhoneNumber)o;
             return pn.areaCode == this.areaCode;
         }
+
+        @Override
+        public int hashCode() {
+            int result = 17;
+            result = 31 * result + areaCode;
+            
+            return result;
+        }
     }
 
     public static void main(String[] args) {
