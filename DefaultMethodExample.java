@@ -6,13 +6,14 @@ public class DefaultMethodExample implements DefaultMethodInterface {
     }
 
     @Override
-    public void newInterface() {
+    public void newInterfaceUsingDefaultOverride() {
         System.out.println("override newInterface");
     }
 
     public static void main(String[] args) {
         DefaultMethodExample example = new DefaultMethodExample();
         example.oldInterface();
-        example.newInterface();
+        example.newInterfaceUsingDefault();
+        example.newInterfaceUsingDefaultOverride();
     }
 }
