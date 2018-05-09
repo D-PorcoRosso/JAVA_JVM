@@ -2,10 +2,12 @@ import java.util.*;
 
 public class GenericExample {
 
-
+    //do not do this, keep compiler check.
+    @SuppressWarnings("unchecked")
     public void doNotDoThis() {
         //don't do this, we hope compiler can find code error as soon as possible. this situation won't
         //be detect error on compile time, but will crash on run time
+        
         Collection temp = new ArrayList<String>();
         temp.add(123);
 
