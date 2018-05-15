@@ -84,6 +84,12 @@ public class GenericStackExample {
             elements[size++] = e;
         }
 
+        public void pushAll(Iterable<E> src) {
+            for (E e : src ) {
+                push(e);
+            }
+        }
+
 
         public Object pop() {
             if ( size == 0 ) 
@@ -105,7 +111,11 @@ public class GenericStackExample {
     }
 
     public static void main(String[] args) {
-        
+        //compile error GenericStackExample.java:116: error: incompatible types: Iterable<Integer> cannot be converted to Iterable<Number>
+        //numberStack.pushAll(integers);
+        /*myStack3<Number> numberStack = new myStack3<>();
+        Iterable<Integer> integers = {1,3,4};
+        numberStack.pushAll(integers);*/
     }
 
 }
