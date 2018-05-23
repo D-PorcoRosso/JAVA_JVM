@@ -1,0 +1,112 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   PayrollDay.java
+
+
+final class PayrollDay extends Enum
+{
+    private static abstract class PayType extends Enum
+    {
+
+        public static PayType[] values()
+        {
+            return (PayType[])$VALUES.clone();
+        }
+
+        public static PayType valueOf(String s)
+        {
+            return (PayType)Enum.valueOf(PayrollDay$PayType, s);
+        }
+
+        abstract double overtimePay(double d, double d1);
+
+        double pay(double d, double d1)
+        {
+            double d2 = d * d1;
+            return d2 + overtimePay(d, d1);
+        }
+
+        public static final PayType WEEKDAY;
+        public static final PayType WEEKEND;
+        private static final int HOURS_PER_SHIFT = 8;
+        private static final PayType $VALUES[];
+
+        static 
+        {
+            WEEKDAY = new PayType("WEEKDAY", 0) {
+
+                double overtimePay(double d, double d1)
+                {
+                    return d > 8D ? ((d - 8D) * d1) / 2D : 0.0D;
+                }
+
+            }
+;
+            WEEKEND = new PayType("WEEKEND", 1) {
+
+                double overtimePay(double d, double d1)
+                {
+                    return (d * d1) / 2D;
+                }
+
+            }
+;
+            $VALUES = (new PayType[] {
+                WEEKDAY, WEEKEND
+            });
+        }
+
+        private PayType(String s, int i)
+        {
+            super(s, i);
+        }
+
+    }
+
+
+    public static PayrollDay[] values()
+    {
+        return (PayrollDay[])$VALUES.clone();
+    }
+
+    public static PayrollDay valueOf(String s)
+    {
+        return (PayrollDay)Enum.valueOf(PayrollDay, s);
+    }
+
+    private PayrollDay(String s, int i, PayType paytype)
+    {
+        super(s, i);
+        payType = paytype;
+    }
+
+    double pay(double d, double d1)
+    {
+        return payType.pay(d, d1);
+    }
+
+    public static final PayrollDay MONDAY;
+    public static final PayrollDay TUESDAY;
+    public static final PayrollDay WEDNESDAY;
+    public static final PayrollDay THURSDAY;
+    public static final PayrollDay FRIDAY;
+    public static final PayrollDay SATURDAY;
+    public static final PayrollDay SUNDAY;
+    private final PayType payType;
+    private static final PayrollDay $VALUES[];
+
+    static 
+    {
+        MONDAY = new PayrollDay("MONDAY", 0, PayType.WEEKDAY);
+        TUESDAY = new PayrollDay("TUESDAY", 1, PayType.WEEKDAY);
+        WEDNESDAY = new PayrollDay("WEDNESDAY", 2, PayType.WEEKDAY);
+        THURSDAY = new PayrollDay("THURSDAY", 3, PayType.WEEKDAY);
+        FRIDAY = new PayrollDay("FRIDAY", 4, PayType.WEEKDAY);
+        SATURDAY = new PayrollDay("SATURDAY", 5, PayType.WEEKEND);
+        SUNDAY = new PayrollDay("SUNDAY", 6, PayType.WEEKEND);
+        $VALUES = (new PayrollDay[] {
+            MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+        });
+    }
+}
