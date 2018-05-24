@@ -1,0 +1,49 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   EnumExampleMain.java
+
+import java.io.PrintStream;
+import java.util.EnumSet;
+import java.util.Iterator;
+
+public class EnumExampleMain
+{
+
+    public EnumExampleMain()
+    {
+    }
+
+    public static void main(String args[])
+    {
+        EnumExample aenumexample[] = EnumExample.values();
+        int i = aenumexample.length;
+        for(int j = 0; j < i; j++)
+        {
+            EnumExample enumexample = aenumexample[j];
+            System.out.println(enumexample);
+        }
+
+        double d = 10D;
+        double d1 = d / Planet.EARTH.surfaceGravity();
+        Planet aplanet[] = Planet.values();
+        int k = aplanet.length;
+        for(int l = 0; l < k; l++)
+        {
+            Planet planet = aplanet[l];
+            System.out.println((new StringBuilder()).append("weight on ").append(planet).append(" is ").append(planet.surfaceWeight(d1)).toString());
+        }
+
+        System.out.println(PayrollDay.FRIDAY.pay(8D, 1.5D));
+        EnumSet enumset = EnumSet.of(EnumExample.C, EnumExample.A);
+        EnumExample enumexample1;
+        for(Iterator iterator = enumset.iterator(); iterator.hasNext(); System.out.println(enumexample1))
+            enumexample1 = (EnumExample)iterator.next();
+
+        enumset = EnumSet.range(EnumExample.A, EnumExample.C);
+        EnumExample enumexample2;
+        for(Iterator iterator1 = enumset.iterator(); iterator1.hasNext(); System.out.println(enumexample2))
+            enumexample2 = (EnumExample)iterator1.next();
+
+    }
+}
